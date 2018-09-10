@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
+                .antMatchers("/hellofull").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -25,7 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+             .and().rememberMe()
+             	.alwaysRemember(true);
     }
 
     @Bean
